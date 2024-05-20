@@ -1,0 +1,44 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import PostCard from "../components/PostCard.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <h1><span id="header"></span></h1>
+            <span class="pb-4 block"
+                >Cyber Security | CTFs | Writeups | Code</span
+            >
+            <div class="flex justify-between">
+                <h6>Latest Posts</h6>
+                <a href="#" class="text-sm">All Posts -></a>
+            </div>
+            <div class="grid grid-cols-4 gap-4 mt-4">
+                <PostCard title="Test Title" pubDate="05/19/2024" />
+                <PostCard title="Test Title" pubDate="05/19/2024" />
+                <PostCard title="Test Title" pubDate="05/19/2024" />
+                <PostCard title="Test Title" pubDate="05/19/2024" />
+            </div>
+        </main>
+        <Footer />
+        <script>
+            import TypeIt from "typeit";
+
+            new TypeIt("#header", {
+                strings: "鬼 0niSec",
+                loop: true,
+            })
+                .go()
+                .pause(1500);
+        </script>
+    </body>
+</html>

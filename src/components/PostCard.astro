@@ -1,0 +1,9 @@
+---
+import FormattedDate from "./FormattedDate.astro";
+const { title, description, pubDate, tags, heroImage } = Astro.props;
+---
+
+<div class="border-2 rounded-xl border-neutral-300">
+    <span class="font-thin text-sm"><FormattedDate date={new Date()} /></span>
+    <h6 class="text-sm">{title}</h6>
+</div>
