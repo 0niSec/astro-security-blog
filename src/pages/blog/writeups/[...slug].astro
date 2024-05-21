@@ -1,6 +1,8 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import BlogPost from "../../../layouts/BlogPost.astro";
+import type { InferGetStaticPropsType } from "astro";
+import { getCollection } from "astro:content";
+import BlogPost from "../../../layouts/WriteupLayout.astro";
+import WriteupLayout from "../../../layouts/WriteupLayout.astro";
 
 export async function getStaticPaths() {
     const entries = await getCollection("writeup");
@@ -11,13 +13,13 @@ export async function getStaticPaths() {
     }));
 }
 
-type Props = CollectionEntry<"writeup">;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { entry } = Astro.props;
 
 const { Content } = await entry.render();
 ---
 
-<BlogPost {...entry.data}>
+<WriteupLayout {...entry.data}>
     <Content />
-</BlogPost>
+</WriteupLayout>
