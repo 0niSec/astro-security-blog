@@ -8,16 +8,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 export async function getStaticPaths({ paginate }: { paginate: any }) {
     const writeups = (await getCollection("writeup")).map((entry) => ({
         path: `/blog/writeups/${entry.slug}`,
-        ...entry,
+        entry,
     }));
 
     // Sort them as you wish
     return paginate([...writeups], { pageSize: 10 });
 }
 
-const { category } = Astro.params;
 const { page } = Astro.props;
-console.log(page.data);
+// console.log(page.data);
 ---
 
 <!doctype html>
