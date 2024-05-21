@@ -1,17 +1,21 @@
 import { defineCollection, z } from "astro:content";
 
-const blog = defineCollection({
-  type: "content",
-  // Type-check frontmatter using a schema
-  schema: z.object({
-    title: z.string(),
-    tags: z.array(z.string()),
-    description: z.string(),
-    // Transform string to Date object
-    pubDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
-    heroImage: z.string().optional(),
-  }),
-});
+const DIFFICULTY = ["Easy", "Medium", "Hard", "Insane"] as const;
+const OS = ["Windows", "Linux"] as const;
 
-export const collections = { blog };
+export const collections = {
+    writeup: defineCollection({
+        type: "content",
+        schema: z.object({
+            title: z.string(),
+            topics: z.array(z.string()), // A tag listing of the types of topics
+            description: z.string(),
+            pubDate: z.coerce.date(),
+            updatedDate: z.coerce.date().optional(),
+            heroImage: z.string().optional(),
+            difficulty: z.enum(DIFFICULTY),
+            os: z.enum(OS),
+            isActive: z.boolean(),
+        }),
+    }),
+};

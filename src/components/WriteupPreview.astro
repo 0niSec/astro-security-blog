@@ -1,0 +1,5 @@
+---
+const { isActive } = Astro.props;
+---
+
+{isActive ? <h1>Active</h1> : <slot />}

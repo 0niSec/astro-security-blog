@@ -1,0 +1,32 @@
+---
+import type { InferGetStaticPropsType } from "astro";
+import { getCollection } from "astro:content";
+import WriteupLayout from "../../../layouts/WriteupLayout.astro";
+
+export async function getStaticPaths() {
+    const entries = await getCollection("writeup");
+
+    return entries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { entry } = Astro.props;
+
+const { Content } = await entry.render();
+---
+
+<WriteupLayout {...entry.data}>
+    {
+        entry.data.isActive ? (
+            <div class="alert alert-warning" role="alert">
+                <p>This writeup is still a work in progress.</p>
+            </div>
+        ) : (
+            <Content />
+        )
+    }
+</WriteupLayout>

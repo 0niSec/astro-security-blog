@@ -4,6 +4,26 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import PostCard from "../components/PostCard.astro";
+
+import { getCollection } from "astro:content";
+
+// Define the latest posts array
+let latestPosts = [];
+
+// Get the latest blog posts
+const writeups = await getCollection("writeup");
+
+// Add the latest posts to the array
+latestPosts.push(...writeups);
+
+// Sort the latest posts by date
+latestPosts.sort((a, b) => {
+    return a.data.pubDate > b.data.pubDate ? -1 : 1;
+});
+
+latestPosts = latestPosts.slice(0, 4);
+
+console.log(latestPosts); // Debugging
 ---
 
 <!doctype html>
@@ -18,15 +38,28 @@ import PostCard from "../components/PostCard.astro";
             <span class="pb-4 block"
                 >Cyber Security | CTFs | Writeups | Code</span
             >
+            <!-- Content here -->
             <div class="flex justify-between">
                 <h6>Latest Posts</h6>
-                <a href="#" class="text-sm">All Posts -></a>
+                <a href="/blog" class="text-sm">All Posts -></a>
             </div>
-            <div class="grid grid-cols-4 gap-4 mt-4">
-                <PostCard title="Test Title" pubDate="05/19/2024" />
-                <PostCard title="Test Title" pubDate="05/19/2024" />
-                <PostCard title="Test Title" pubDate="05/19/2024" />
-                <PostCard title="Test Title" pubDate="05/19/2024" />
+            <div id="latest-posts" class="grid grid-cols-4 gap-4 mt-4">
+                {
+                    latestPosts.length > 0 ? (
+                        latestPosts.map((post: any) => (
+                            <PostCard
+                                title={post.data.title}
+                                description={post.data.description}
+                                topics={post.data.topics}
+                                pubDate={post.data.pubDate}
+                                slug=`/blog/writeups/${post.slug}` // TODO: This needs to be changed to account for /blog/[category]/[slug]
+                                heroImage={post.data.heroImage}
+                            />
+                        ))
+                    ) : (
+                        <p class="w-full">There's nothing yet!</p>
+                    )
+                }
             </div>
         </main>
         <Footer />
@@ -40,5 +73,16 @@ import PostCard from "../components/PostCard.astro";
                 .go()
                 .pause(1500);
         </script>
+        <!-- <script>
+            if (window.netlifyIdentity) {
+                window.netlifyIdentity.on("init", (user) => {
+                    if (!user) {
+                        window.netlifyIdentity.on("login", () => {
+                            document.location.href = "/admin/";
+                        });
+                    }
+                });
+            }
+        </script> -->
     </body>
 </html>
