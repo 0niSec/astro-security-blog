@@ -1,72 +1,76 @@
+:root {
+    --gray-light: 229, 233, 240;
+}
+
 @font-face {
-  font-family: "Fira Code";
-  src: url("/fonts/firacode-regular.ttf") format("ttf");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+    font-family: "Fira Code";
+    src: url("/fonts/firacode-regular.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 body {
-  font-family: "Fira Code", monospace;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  font-size: 20px !important;
-  line-height: 1.7;
-  @apply text-neutral-100 bg-neutral-900 !important;
+    font-family: "Fira Code", monospace;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 18px !important;
+    line-height: 1.7;
+    @apply text-neutral-200 bg-neutral-900 !important;
 }
 
 h1 {
-  @apply text-5xl font-bold;
+    @apply text-5xl font-bold;
 }
 
 h2 {
-  @apply text-4xl font-bold;
+    @apply text-4xl font-bold;
 }
 
 h3 {
-  @apply text-3xl font-bold;
+    @apply text-3xl font-bold;
 }
 
 h4 {
-  @apply text-2xl font-bold;
+    @apply text-2xl font-bold;
 }
 
 h5 {
-  @apply text-xl font-bold;
+    @apply text-xl font-bold;
 }
 
 h6 {
-  @apply text-lg font-bold;
+    @apply text-lg font-bold;
 }
 
 code {
-  @apply py-[2px] px-[4px] rounded-sm;
+    @apply py-[2px] px-[4px] rounded-sm bg-gray-600;
 }
 
 pre {
-  padding: 1.5em;
-  border-radius: 8px;
+    padding: 1.5em;
+    border-radius: 8px;
 }
 
 main {
-  @apply container mx-auto max-w-5xl py-12;
+    @apply container mx-auto max-w-5xl py-12;
 }
 
 a {
-  @apply text-blue-600 hover:text-blue-800;
-}
-
-p {
-  @apply mb-4;
+    @apply text-lime-400 hover:text-lime-500;
 }
 
 .prose {
-  @apply max-w-none text-neutral-300;
+    @apply max-w-none text-neutral-200 text-lg;
 }
 
-.prose p {
-  @apply text-xl mb-8;
+.icon-link {
+    @apply ml-2 no-underline;
+}
+
+.anchor {
+    @apply no-underline opacity-10 hover:opacity-100;
 }
 
 .prose h1,
@@ -75,31 +79,39 @@ p {
 .prose h4,
 .prose h5,
 .prose h6 {
-  @apply text-neutral-300;
+    @apply text-neutral-200;
 }
 
 .prose a {
-  @apply text-blue-600 hover:text-blue-800;
+    @apply text-lime-400 hover:text-lime-500;
 }
 
 .date {
-  @apply mt-4;
+    @apply mt-4;
 }
 
 img {
-  @apply max-w-full;
+    @apply max-w-full;
 }
 
 nav h2 {
-  @apply text-2xl;
+    @apply text-2xl;
 }
 
 nav * {
-  @apply text-neutral-300 hover:text-neutral-400;
+    @apply text-lime-400 hover:text-lime-500;
 }
 
 .internal-links {
-  @apply space-x-4;
+    @apply space-x-4;
+}
+
+img {
+    @apply rounded-lg;
+}
+
+div.prose ul li {
+    @apply mb-1;
 }
 
 /* h1,
