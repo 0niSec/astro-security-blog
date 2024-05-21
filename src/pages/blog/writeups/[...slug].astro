@@ -20,5 +20,13 @@ const { Content } = await entry.render();
 ---
 
 <WriteupLayout {...entry.data}>
-    <Content />
+    {
+        entry.data.isActive ? (
+            <div class="alert alert-warning" role="alert">
+                <p>This writeup is still a work in progress.</p>
+            </div>
+        ) : (
+            <Content />
+        )
+    }
 </WriteupLayout>
