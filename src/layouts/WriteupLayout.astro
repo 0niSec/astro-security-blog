@@ -28,13 +28,13 @@ const {
     <body>
         <Header />
         <main>
-            <article>
+            <article class="prose">
                 <div class="hero-image">
                     {
                         heroImage && (
                             <Image
-                                width={1020}
-                                height={510}
+                                width={720}
+                                height={720}
                                 src={heroImage}
                                 loading="eager"
                                 alt=""
@@ -42,24 +42,23 @@ const {
                         )
                     }
                 </div>
-                <div class="prose">
-                    <div class="title">
-                        <div class="date">
-                            <FormattedDate date={pubDate} />
-                            {
-                                updatedDate && (
-                                    <div class="last-updated-on">
-                                        Last updated on{" "}
-                                        <FormattedDate date={updatedDate} />
-                                    </div>
-                                )
-                            }
-                        </div>
-                        <h1>{title}</h1>
-                        <hr />
+
+                <div class="title">
+                    <div class="date">
+                        <FormattedDate date={pubDate} />
+                        {
+                            updatedDate && (
+                                <div class="last-updated-on">
+                                    Last updated on{" "}
+                                    <FormattedDate date={updatedDate} />
+                                </div>
+                            )
+                        }
                     </div>
-                    <slot />
+                    <h1>{title}</h1>
+                    <hr />
                 </div>
+                <slot />
             </article>
         </main>
         <Footer />
