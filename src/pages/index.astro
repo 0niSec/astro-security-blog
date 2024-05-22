@@ -35,7 +35,7 @@ console.log(latestPosts); // Debugging
         <Header />
         <main>
             <h1><span id="header"></span></h1>
-            <span class="pb-4 block"
+            <span class="pb-4 block text-sm md:text-base"
                 >Cyber Security | CTFs | Writeups | Code</span
             >
             <!-- Content here -->
@@ -43,7 +43,7 @@ console.log(latestPosts); // Debugging
                 <h6>Latest Posts</h6>
                 <a href="/blog" class="text-sm">All Posts -></a>
             </div>
-            <div id="latest-posts" class="grid grid-cols-4 gap-4 mt-4">
+            <div id="latest-posts" class="md:grid md:grid-cols-4 md:gap-4 mt-4 flex flex-row">
                 {
                     latestPosts.length > 0 ? (
                         latestPosts.map((post: any) => (
