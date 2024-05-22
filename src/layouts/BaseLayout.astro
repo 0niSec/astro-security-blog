@@ -25,7 +25,8 @@ const { frontmatter } = Astro.props;
                         frontmatter.heroImage && (
                             <Image
                                 src={frontmatter.heroImage}
-                                alt="hero image"
+                                class="not-prose"
+                                alt="post hero image"
                                 width={720}
                                 height={720}
                                 loading="eager"

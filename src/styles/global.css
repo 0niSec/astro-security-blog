@@ -1,73 +1,77 @@
 :root {
-  --gray-light: 229, 233, 240;
+    --gray-light: 229, 233, 240;
 }
 
 @font-face {
-  font-family: "Fira Code";
-  src: url("/fonts/firacode-regular.ttf") format("ttf");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+    font-family: "Fira Code";
+    src: url("/fonts/firacode-regular.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 body {
-  font-family: "Fira Code", monospace;
-  margin: 0;
-  padding: 0;
-  @apply text-neutral-200 bg-neutral-900 text-lg text-left leading-[1.7rem] !important;
+    font-family: "Fira Code", monospace;
+    margin: 0;
+    padding: 0;
+    @apply text-neutral-200 bg-zinc-900 text-lg text-left leading-[1.7rem] !important;
+}
+
+img {
+    @apply w-full;
 }
 
 h1 {
-  @apply text-5xl font-bold;
+    @apply text-5xl font-bold;
 }
 
 h2 {
-  @apply text-4xl font-bold;
+    @apply text-4xl font-bold;
 }
 
 h3 {
-  @apply text-3xl font-bold;
+    @apply text-3xl font-bold;
 }
 
 h4 {
-  @apply text-2xl font-bold;
+    @apply text-2xl font-bold;
 }
 
 h5 {
-  @apply text-xl font-bold;
+    @apply text-xl font-bold;
 }
 
 h6 {
-  @apply text-lg font-bold;
+    @apply text-lg font-bold;
 }
 
 code {
-  @apply py-[2px] px-[4px] rounded-sm bg-gray-600;
+    @apply py-[2px] px-[4px] rounded-sm bg-gray-600;
 }
 
 pre {
-  padding: 1.5em;
-  border-radius: 8px;
+    padding: 1.5em;
+    border-radius: 8px;
 }
 
 main {
-  @apply container mx-auto p-8 md:p-16;
+    @apply container mx-auto p-8 md:p-16;
 }
 
-a {
-  @apply text-lime-400 hover:text-lime-500;
+a:not(#post-card) {
+    @apply text-lime-400 hover:text-lime-500;
 }
 
 .prose {
-  @apply text-neutral-200 text-lg mx-auto;
+    @apply text-neutral-200 text-lg mx-auto;
 }
 
 .icon-link {
-  @apply ml-2 no-underline;
+    @apply ml-2 no-underline;
 }
 
 .anchor {
-  @apply no-underline opacity-10 hover:opacity-100;
+    @apply no-underline opacity-10 hover:opacity-100;
 }
 
 .prose h1,
@@ -76,33 +80,29 @@ a {
 .prose h4,
 .prose h5,
 .prose h6 {
-  @apply text-neutral-200;
+    @apply text-neutral-200;
 }
 
 .prose a {
-  @apply text-lime-400 hover:text-lime-500;
+    @apply text-lime-400 hover:text-lime-500;
 }
 
 .date {
-  @apply mt-4;
+    @apply mt-4;
 }
 
 nav h2 {
-  @apply text-2xl;
+    @apply text-2xl;
 }
 
 nav * {
-  @apply text-lime-400 hover:text-lime-500;
-}
-
-.internal-links {
-  @apply space-x-4;
+    @apply text-lime-400 hover:text-lime-500;
 }
 
 img {
-  @apply rounded-lg;
+    @apply rounded-lg;
 }
 
 div.prose ul li {
-  @apply mb-1;
+    @apply mb-1;
 }
