@@ -20,7 +20,7 @@ const { title, description, pubDate, topics, heroImage, slug } = Astro.props;
             loading={"eager"}
         />
         <h6 class="text-sm pb-2">{title}</h6>
-        <p class="font-thin text-xs">{description}</p>
+        <p class="font-thin text-sm">{description}</p>
         <div id="tags-row" class="flex flex-wrap pt-2 gap-y-2">
             {
                 topics.map((topic: string) => (
