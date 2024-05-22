@@ -5,9 +5,9 @@ const { title, description, pubDate, topics, heroImage, slug } = Astro.props;
 ---
 
 <div
-    class="border rounded-xl p-4 bg-gradient-to-r from-neutral-700/5 to-neutral-800/40 cursor-pointer border-neutral-300 hover:shadow-2xl hover:shadow-black transition-shadow"
+    class="border border-neutral-200 rounded-xl p-4 bg-gradient-to-r from-zinc-700/15 to-zinc-800/40 cursor-pointer hover:shadow-lg hover:shadow-lime-500 transition-all duration-250 ease-in-out"
 >
-    <a href={slug} class="text-neutral-200">
+    <a href={slug} class="text-neutral-200" id="post-card">
         <p class="font-thin pb-2 text-sm">
             <FormattedDate date={pubDate} />
         </p>
@@ -20,11 +20,11 @@ const { title, description, pubDate, topics, heroImage, slug } = Astro.props;
             loading={"eager"}
         />
         <h6 class="text-sm pb-2">{title}</h6>
-        <p class="font-thin text-xs">{description}</p>
+        <p class="font-thin text-sm">{description}</p>
         <div id="tags-row" class="flex flex-wrap pt-2 gap-y-2">
             {
                 topics.map((topic: string) => (
-                    <span class="text-xs bg-neutral-600 rounded-3xl mr-2 block">
+                    <span class="text-xs bg-zinc-600 rounded-3xl mr-2 block">
                         <p class="px-2 py-1">{topic}</p>
                     </span>
                 ))
