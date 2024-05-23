@@ -12,32 +12,51 @@ import expressiveCode from "astro-expressive-code";
 export default defineConfig({
   site: "https://0nisec.blog",
   prefetch: {
-    defaultStrategy: "hover"
+    defaultStrategy: "hover",
   },
   trailingSlash: "ignore",
-  syntaxHighlight: "prism",
-  integrations: [mdx(), sitemap(), tailwind(), expressiveCode()],
+  integrations: [
+    expressiveCode({
+      themes: ["min-dark"],
+    }),
+    mdx(),
+    sitemap(),
+    tailwind(),
+  ],
   markdown: {
-    remarkPlugins: [[remarkToc, {
-      heading: "table of contents"
-    }]],
-    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {
-      behavior: "append",
-      properties: {
-        className: "anchor"
-      },
-      content: {
-        type: "element",
-        tagName: "span",
-        properties: {
-          className: "icon icon-link"
+    remarkPlugins: [
+      [
+        remarkToc,
+        {
+          heading: "table of contents",
         },
-        children: [{
-          type: "text",
-          value: "#"
-        }]
-      }
-    }]]
+      ],
+    ],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "append",
+          properties: {
+            className: "anchor",
+          },
+          content: {
+            type: "element",
+            tagName: "span",
+            properties: {
+              className: "icon icon-link",
+            },
+            children: [
+              {
+                type: "text",
+                value: "#",
+              },
+            ],
+          },
+        },
+      ],
+    ],
   },
-  output: "static"
+  output: "static",
 });
