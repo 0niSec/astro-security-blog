@@ -12,6 +12,7 @@ media_folder: "src/assets/images" # Location where files will be stored in the r
 public_folder: "src/assets/images" # The src attribute for uploaded media
 site_url: "https://0nisec.blog"
 display_url: "https://0nisec.blog"
+extension: "mdx" # Or "md" if you want to use markdown
 
 collections:
     - name: "writeups" # Used in routes, e.g., /admin/collections/blog
