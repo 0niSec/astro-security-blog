@@ -9,33 +9,33 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://0nisec.blog",
-    prefetch: {
-        prefetchAll: true,
-    },
-    trailingSlash: "ignore",
-    syntaxHighlight: "prism",
-    integrations: [mdx(), sitemap(), tailwind()],
-    markdown: {
-        remarkPlugins: [[remarkToc, { heading: "table of contents" }]],
-        rehypePlugins: [
-            rehypeSlug,
-            [
-                rehypeAutolinkHeadings,
-                {
-                    behavior: "append",
-                    properties: { className: "anchor" },
-                    content: {
-                        type: "element",
-                        tagName: "span",
-                        properties: {
-                            className: "icon icon-link",
-                        },
-                        children: [{ type: "text", value: "#" }],
-                    },
-                },
-            ],
-        ],
-    },
-    output: "static",
+  site: "https://0nisec.blog",
+  prefetch: {
+    defaultStrategy: "hover",
+  },
+  trailingSlash: "ignore",
+  syntaxHighlight: "prism",
+  integrations: [mdx(), sitemap(), tailwind()],
+  markdown: {
+    remarkPlugins: [[remarkToc, { heading: "table of contents" }]],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "append",
+          properties: { className: "anchor" },
+          content: {
+            type: "element",
+            tagName: "span",
+            properties: {
+              className: "icon icon-link",
+            },
+            children: [{ type: "text", value: "#" }],
+          },
+        },
+      ],
+    ],
+  },
+  output: "static",
 });

@@ -14,9 +14,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 ---
 
+<!-- TypeIt JS -->
+<script>
+    import TypeIt from "typeit";
+
+    new TypeIt("#header", {
+        strings: "鬼 0niSec",
+        loop: true,
+    })
+        .go()
+        .pause(1500);
+</script>
+
 <!-- Netlify Identify -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-></script>
+<script
+    is:inline
+    src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />

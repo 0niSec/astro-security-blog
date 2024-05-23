@@ -14,10 +14,11 @@ body {
     font-family: "Fira Code", monospace;
     margin: 0;
     padding: 0;
-    text-align: left;
-    font-size: 18px !important;
-    line-height: 1.7;
-    @apply text-neutral-200 bg-neutral-900 !important;
+    @apply text-neutral-200 bg-zinc-900 text-lg text-left leading-[1.7rem] !important;
+}
+
+img {
+    @apply w-full;
 }
 
 h1 {
@@ -54,15 +55,15 @@ pre {
 }
 
 main {
-    @apply container mx-auto max-w-5xl py-12;
+    @apply container mx-auto p-8 md:p-16;
 }
 
-a {
+a:not(#post-card) {
     @apply text-lime-400 hover:text-lime-500;
 }
 
 .prose {
-    @apply max-w-none text-neutral-200 text-lg;
+    @apply text-neutral-200 text-lg mx-auto;
 }
 
 .icon-link {
@@ -90,20 +91,12 @@ a {
     @apply mt-4;
 }
 
-img {
-    @apply max-w-full;
-}
-
 nav h2 {
     @apply text-2xl;
 }
 
 nav * {
     @apply text-lime-400 hover:text-lime-500;
-}
-
-.internal-links {
-    @apply space-x-4;
 }
 
 img {
@@ -113,13 +106,3 @@ img {
 div.prose ul li {
     @apply mb-1;
 }
-
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 0.5rem 0;
-  line-height: 1.2;
-} */

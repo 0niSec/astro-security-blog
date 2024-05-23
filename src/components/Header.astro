@@ -1,28 +1,56 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import { SITE_TITLE, GITHUB_URL } from "../consts";
+import { SITE_TITLE, GITHUB_URL, HTB_URL } from "../consts";
 ---
 
-<header class="py-4 bg-neutral-800/25 shadow-[0_4px_8px_-15px_rgba(0,0,0,0.3)]">
-    <div class="container mx-auto max-w-5xl">
-        <nav class="flex justify-between">
+<header class="bg-zinc-800/70 shadow-md">
+    <div class="container mx-auto px-8 py-4 md:px-16">
+        <nav class="flex justify-between items-center">
             <h2><a href="/">{SITE_TITLE}</a></h2>
-            <div class="internal-links">
+            <input
+                type="checkbox"
+                name="mobile-menu-toggle"
+                id="mobile-menu-toggle"
+                class="hidden"
+            />
+            <label for="mobile-menu-toggle" class="cursor-pointer md:hidden">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 20 20"
+                    ><path
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                        d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
+                        clip-rule="evenodd"></path></svg
+                >
+            </label>
+            <div id="menu" class="internal-links space-x-4 hidden md:flex">
                 <HeaderLink href="/">/home</HeaderLink>
                 <HeaderLink href="/blog">/blog</HeaderLink>
                 <HeaderLink href="/about">/about</HeaderLink>
             </div>
-            <div class="social-links">
+            <div class="social-links hidden md:flex md:space-x-4">
                 <a href={GITHUB_URL} target="_blank">
                     <span class="sr-only">Go to Github</span>
-                    <svg
-                        viewBox="0 0 16 16"
-                        aria-hidden="true"
-                        width="32"
-                        height="32"
+                    <svg viewBox="0 0 16 16" aria-hidden="true" class="w-8 h-8"
                         ><path
                             fill="currentColor"
                             d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                        ></path></svg
+                    >
+                </a>
+                <a href={HTB_URL}>
+                    <span class="sr-only">Go to Hack The Box</span>
+                    <svg
+                        fill="#000000"
+                        class="w-8 h-8"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        ><path
+                            fill="currentColor"
+                            d="M11.996 0a1.119 1.119 0 0 0-.057.003.9.9 0 0 0-.236.05.907.907 0 0 0-.165.079L1.936 5.675a.889.889 0 0 0-.445.77v11.111a.889.889 0 0 0 .47.784l9.598 5.541.054.029v.002a.857.857 0 0 0 .083.035l.012.004c.028.01.056.018.085.024.01.001.011.003.016.004a.93.93 0 0 0 .296.015.683.683 0 0 0 .086-.015c.01 0 .011-.002.016-.004a.94.94 0 0 0 .085-.024l.012-.004a.882.882 0 0 0 .083-.035v-.002a1.086 1.086 0 0 0 .054-.029l9.599-5.541a.889.889 0 0 0 .469-.784V6.48l-.001-.026v-.008a.889.889 0 0 0-.312-.676l-.029-.024c0-.002-.01-.005-.01-.007a.899.899 0 0 0-.107-.07L12.453.127A.887.887 0 0 0 11.99 0zm.01 2.253c.072 0 .144.019.209.056l6.537 3.774a.418.418 0 0 1 0 .724l-6.537 3.774a.418.418 0 0 1-.418 0L5.26 6.807a.418.418 0 0 1 0-.724l6.537-3.774a.42.42 0 0 1 .209-.056zm-8.08 6.458a.414.414 0 0 1 .215.057l6.524 3.766a.417.417 0 0 1 .208.361v7.533a.417.417 0 0 1-.626.361l-6.523-3.766a.417.417 0 0 1-.209-.362V9.13c0-.241.196-.414.41-.418zm16.16 0c.215.004.41.177.41.418v7.532a.42.42 0 0 1-.208.362l-6.524 3.766a.417.417 0 0 1-.626-.361v-7.533c0-.149.08-.286.209-.36l6.523-3.767a.415.415 0 0 1 .216-.057z"
                         ></path></svg
                     >
                 </a>
@@ -30,3 +58,46 @@ import { SITE_TITLE, GITHUB_URL } from "../consts";
         </nav>
     </div>
 </header>
+
+<div
+    id="mobile-menu"
+    class="fixed top-0 left-0 w-[100vw] h-[100vh] z-50 bg-slate-900/90 items-center justify-center flex-col hidden"
+>
+    <div class="flex flex-col space-y-2">
+        <HeaderLink href="/">/home</HeaderLink>
+        <HeaderLink href="/blog">/blog</HeaderLink>
+        <HeaderLink href="/about">/about</HeaderLink>
+    </div>
+    <label
+        for="mobile-menu-toggle"
+        class="absolute top-4 right-4 cursor-pointer"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            ><path
+                fill="currentColor"
+                d="m12 13.4l-4.9 4.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.9-4.9l-4.9-4.9q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.9 4.9l4.9-4.9q.275-.275.7-.275t.7.275t.275.7t-.275.7L13.4 12l4.9 4.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"
+            ></path></svg
+        >
+    </label>
+</div>
+
+<style>
+    header:has(#mobile-menu-toggle:checked) + #mobile-menu {
+        display: flex;
+    }
+</style>
+
+<script>
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    mobileMenuToggle?.addEventListener("change", function () {
+        if ((this as HTMLInputElement).checked) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+    });
+</script>
