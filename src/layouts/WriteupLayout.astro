@@ -18,6 +18,22 @@ const {
     os,
     difficulty,
 } = Astro.props;
+
+type DificultyColor = {
+    [key: string]: string;
+};
+
+const difficultyColors: DificultyColor = {
+    easy: "#4ADE80",
+    medium: "#FACC15",
+    hard: "#DC2626",
+    insane: "#7F1D1D",
+};
+
+const osIcons = {
+    Linux: "/src/assets/images/LinuxIcon.png",
+    Windows: "/src/assets/images/WindowsIcon.png",
+};
 ---
 
 <html lang="en">
@@ -33,12 +49,12 @@ const {
                     {
                         heroImage && (
                             <Image
-                                class="not-prose"
+                                class="not-prose rounded-lg"
                                 width={720}
                                 height={720}
                                 src={heroImage}
                                 loading="eager"
-                                alt="post hero image"
+                                alt="hero"
                             />
                         )
                     }
@@ -56,9 +72,48 @@ const {
                             )
                         }
                     </div>
-                    <h1>{title}</h1>
-                    <hr />
+                    <h1 class="mb-6">{title}</h1>
+                    <div id="tags-row" class="flex space-x-2 mb-8">
+                        {
+                            topics.map((topic: string) => (
+                                <span class="text-xs p-2 bg-zinc-600 rounded-3xl">
+                                    {topic}
+                                </span>
+                            ))
+                        }
+                    </div>
                 </div>
+                <h5 class="mb-2">Box Details</h5>
+                <div
+                    id="box-details"
+                    class="grid justify-between items-center not-prose grid-cols-2"
+                >
+                    <div class="flex items-center">
+                        <span
+                            id="difficulty-circle"
+                            class=`rounded-full w-4 h-4 border-[0.5px] border-neutral-200`
+                            style={{
+                                backgroundColor:
+                                    difficultyColors[difficulty.toLowerCase()],
+                            }}
+                        >
+                        </span>
+                        <span id="difficulty-text" class="ml-2"
+                            >{difficulty}</span
+                        >
+                    </div>
+                    <div class="flex col-start-2 items-center">
+                        <img
+                            class="w-8"
+                            src={osIcons[os]}
+                            alt="OS Icon"
+                            width={48}
+                            height={48}
+                        />
+                        <span class="ml-2">{os}</span>
+                    </div>
+                </div>
+                <hr />
                 <slot />
             </article>
         </main>
