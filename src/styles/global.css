@@ -46,7 +46,7 @@ h6 {
 }
 
 code {
-    @apply py-[2px] px-[4px] rounded-sm bg-gray-600;
+    @apply py-[2px] px-[4px] rounded-sm bg-slate-400;
 }
 
 pre {
@@ -91,6 +91,10 @@ a:not(#post-card) {
     @apply text-lime-400 hover:text-lime-500;
 }
 
+p {
+    @apply mb-4;
+}
+
 .date {
     @apply mt-4;
 }
@@ -105,4 +109,16 @@ nav * {
 
 div.prose ul li {
     @apply mb-1;
+}
+
+pre > code {
+    all: unset;
+}
+
+mark {
+    @apply bg-lime-400 px-1 rounded-sm;
+}
+
+kbd {
+    @apply bg-slate-400 px-1 rounded-sm;
 }

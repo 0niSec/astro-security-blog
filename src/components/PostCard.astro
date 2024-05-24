@@ -15,8 +15,8 @@ const { title, description, pubDate, topics, heroImage, slug } = Astro.props;
             class="rounded-xl pb-2"
             src={heroImage}
             alt={title}
-            width={320}
-            height={320}
+            width={1080}
+            height={1080}
             loading={"eager"}
         />
         <h6 class="text-sm pb-2">{title}</h6>
@@ -24,8 +24,8 @@ const { title, description, pubDate, topics, heroImage, slug } = Astro.props;
         <div id="tags-row" class="flex flex-wrap pt-2 gap-y-2">
             {
                 topics.map((topic: string) => (
-                    <span class="text-xs bg-zinc-600 rounded-3xl mr-2 block">
-                        <p class="px-2 py-1">{topic}</p>
+                    <span class="py-2 px-2 text-xs bg-zinc-600 rounded-3xl mr-2 block">
+                        {topic}
                     </span>
                 ))
             }
