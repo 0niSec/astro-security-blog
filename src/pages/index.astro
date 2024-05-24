@@ -22,8 +22,6 @@ latestPosts.sort((a, b) => {
 });
 
 latestPosts = latestPosts.slice(0, 3);
-
-console.log(latestPosts); // Debugging
 ---
 
 <!doctype html>
@@ -35,10 +33,11 @@ console.log(latestPosts); // Debugging
         <Header />
         <main>
             <h1><span id="header"></span></h1>
-            <span class="pb-4 block text-sm md:text-base"
+            <span class="mb-8 block text-sm md:text-base"
                 >Cyber Security | CTFs | Writeups | Code</span
             >
             <!-- Content here -->
+            <p class="mb-8">Welcome to 0niSec! Take a look around. You'll find writeups for machines I have completed on <a href="https://app.hackthebox.com">Hack the Box</a>, as well as other blog posts related to cyber security. See the <a href="/about">About</a> page for more informatioon about me and my journey into cyber security, hacking and all things red team.</p>
             <div class="flex justify-between">
                 <h6>Latest Posts</h6>
                 <a href="/blog" class="text-sm">All Posts -></a>
