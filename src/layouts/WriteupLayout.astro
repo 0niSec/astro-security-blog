@@ -4,8 +4,6 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import linuxIcon from "../../public/images/LinuxIcon.webp";
-import windowsIcon from "../../public/images/WindowsIcon.webp";
 import { Image } from "astro:assets";
 
 type Props = CollectionEntry<"writeup">["data"]; // Will need to change this later
@@ -16,6 +14,7 @@ const {
     pubDate,
     updatedDate,
     heroImage,
+    heroAlt,
     topics,
     os,
     difficulty,
@@ -30,11 +29,6 @@ const difficultyColors: DificultyColor = {
     medium: "#FACC15",
     hard: "#DC2626",
     insane: "#7F1D1D",
-};
-
-const osIcons = {
-    Linux: "/src/assets/images/LinuxIcon.png",
-    Windows: "/src/assets/images/WindowsIcon.png",
 };
 ---
 
@@ -52,11 +46,11 @@ const osIcons = {
                         heroImage && (
                             <Image
                                 class="not-prose rounded-lg"
-                                width={720}
-                                height={720}
+                                width={1400}
+                                height={1138}
                                 src={heroImage}
                                 loading="eager"
-                                alt="hero"
+                                alt={heroAlt}
                             />
                         )
                     }
@@ -117,6 +111,7 @@ const osIcons = {
                         <span class="ml-2">{os}</span>
                     </div>
                 </div>
+                <p>{description}</p>
                 <hr />
                 <slot />
             </article>
