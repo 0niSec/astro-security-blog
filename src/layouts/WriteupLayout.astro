@@ -39,6 +39,7 @@ const difficultyColors: DificultyColor = {
             description={description}
             image={heroImage.src}
         />
+        <meta property="og:type" content="article" />
     </head>
 
     <body>
@@ -73,7 +74,10 @@ const difficultyColors: DificultyColor = {
                         }
                     </div>
                     <h1 class="mb-6">{title}</h1>
-                    <div id="tags-row" class="flex space-x-2 mb-8">
+                    <div
+                        id="tags-row"
+                        class="flex flex-wrap gap-y-2 gap-x-2 mb-8"
+                    >
                         {
                             topics.map((topic: string) => (
                                 <span class="text-xs p-2 bg-zinc-600 rounded-3xl">
