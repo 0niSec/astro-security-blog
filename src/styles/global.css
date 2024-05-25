@@ -11,6 +11,8 @@
   --pagefind-ui-image-border-radius: 8px;
   --pagefind-ui-image-box-ratio: 3 / 2;
   --pagefind-ui-font: sans-serif;
+  --tw-lime-400: rgb(163 230 53);
+  --tw-lime-500: rgb(132 204 22);
 }
 
 @font-face {
@@ -66,11 +68,50 @@ pre {
 }
 
 main {
-  @apply container mx-auto p-8 md:p-16;
+  @apply container mx-auto items-center p-10 md:px-44 md:pt-20;
 }
 
-a:not(#post-card) {
+p > a {
   @apply text-lime-400 hover:text-lime-500;
+}
+
+/* a:not(#post-card) {
+  @apply text-lime-400 hover:text-lime-500;
+} */
+
+.social-links a {
+  @apply hover:text-lime-400;
+}
+
+/* We can use the `a` selector to style the links */
+a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
+    p > a
+  ) {
+  position: relative;
+  text-decoration: none;
+}
+
+a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
+    p > a
+  )::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 2px;
+  left: 0;
+  background-color: var(--tw-lime-400);
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
+    p > a
+  ):hover::before {
+  width: 100%;
+}
+
+a.active {
+  @apply decoration-lime-400 underline-offset-[4px] !important;
 }
 
 .prose {
@@ -99,7 +140,7 @@ a:not(#post-card) {
 }
 
 .prose a {
-  @apply text-lime-400 hover:text-lime-500;
+  @apply text-lime-400 hover:text-lime-500 no-underline;
 }
 
 p {
@@ -114,9 +155,9 @@ nav h2 {
   @apply text-2xl;
 }
 
-nav * {
+/* nav * {
   @apply text-lime-400 hover:text-lime-500;
-}
+} */
 
 div.prose ul li {
   @apply mb-1;
