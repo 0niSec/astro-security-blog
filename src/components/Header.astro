@@ -35,7 +35,6 @@ import { SITE_TITLE, GITHUB_URL, HTB_URL } from "../consts";
                 <HeaderLink href="/about">/about</HeaderLink>
             </div>
             <div class="social-links hidden md:flex md:space-x-4">
-                <div id="search"></div>
                 <a href={GITHUB_URL} target="_blank">
                     <span class="sr-only">Go to Github</span>
                     <svg viewBox="0 0 16 16" aria-hidden="true" class="w-8 h-8"
@@ -109,11 +108,5 @@ import { SITE_TITLE, GITHUB_URL, HTB_URL } from "../consts";
         } else {
             document.body.classList.remove("overflow-hidden");
         }
-    });
-</script>
-
-<script>
-    window.addEventListener("DOMContentLoaded", (event) => {
-        new PagefindUI({ element: "#search", showSubResults: true });
     });
 </script>
