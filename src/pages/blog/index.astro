@@ -28,7 +28,7 @@ const posts = await getCollection("writeup");
             </h1>
             <p class="mt-6">Testing</p>
 
-            <section class="grid grid-cols-2 gap-4">
+            <section class="md:grid md:grid-cols-2 flex flex-row gap-4">
                 {
                     posts.map((entry) => (
                         <FullListingItem
