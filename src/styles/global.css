@@ -27,7 +27,11 @@ body {
   font-family: "Fira Code", monospace;
   margin: 0;
   padding: 0;
-  @apply text-neutral-200 bg-zinc-900 text-lg text-left leading-[1.7rem] !important;
+  @apply text-zinc-400 bg-zinc-900 text-left !important;
+}
+
+html {
+  font-size: 18px;
 }
 
 img {
@@ -35,19 +39,19 @@ img {
 }
 
 h1 {
-  @apply text-5xl font-bold;
+  @apply text-3xl md:text-5xl font-bold text-neutral-200;
 }
 
 h2 {
-  @apply text-4xl font-bold;
+  @apply text-2xl md:text-4xl font-bold text-neutral-200;
 }
 
 h3 {
-  @apply text-3xl font-bold;
+  @apply text-xl md:text-3xl font-bold text-neutral-200;
 }
 
 h4 {
-  @apply text-2xl font-bold;
+  @apply text-lg md:text-2xl font-bold text-neutral-200;
 }
 
 h5 {
@@ -67,17 +71,13 @@ pre {
   border-radius: 8px;
 }
 
-main {
-  @apply container mx-auto items-center p-10 md:px-44 md:pt-20;
+.container {
+  @apply mx-auto items-center px-4 md:max-w-5xl;
 }
 
 p > a {
   @apply text-lime-400 hover:text-lime-500;
 }
-
-/* a:not(#post-card) {
-  @apply text-lime-400 hover:text-lime-500;
-} */
 
 .social-links a {
   @apply hover:text-lime-400;
@@ -114,16 +114,19 @@ a.active {
   @apply decoration-lime-400 underline-offset-[4px] !important;
 }
 
+.offset-btn::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  @apply bg-lime-400 absolute translate-x-1 translate-y-1 transform -z-50 inset-0;
+}
+
 .prose {
-  @apply text-neutral-200 text-lg mx-auto max-w-3xl;
+  @apply text-neutral-200/75 text-lg mx-auto max-w-3xl;
 }
 
 .icon-link {
   @apply ml-2 no-underline;
-}
-
-.anchor {
-  @apply no-underline opacity-10 hover:opacity-100;
 }
 
 .expressive-code + .expressive-code {
@@ -143,7 +146,7 @@ a.active {
   @apply text-lime-400 hover:text-lime-500 no-underline;
 }
 
-p {
+p:not(.description) {
   @apply mb-4;
 }
 
@@ -155,9 +158,13 @@ nav h2 {
   @apply text-2xl;
 }
 
-/* nav * {
-  @apply text-lime-400 hover:text-lime-500;
-} */
+nav .social-links a {
+  @apply text-neutral-200 hover:text-lime-400;
+}
+
+#menu a {
+  @apply text-neutral-200;
+}
 
 div.prose ul li {
   @apply mb-1;
