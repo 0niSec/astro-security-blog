@@ -26,16 +26,15 @@ const posts = await getCollection("writeup");
             <h1 class="w-full">
                 All blog <span class="text-lime-400">posts</span>
             </h1>
-            <p class="mt-6">Testing</p>
 
-            <section class="md:grid md:grid-cols-2 flex flex-row gap-4">
+            <section class="md:grid md:grid-cols-2 flex flex-row gap-4 mt-8">
                 {
                     posts.map((entry) => (
                         <FullListingItem
                             title={entry.data.title}
                             image={entry.data.heroImage}
                             pubDate={entry.data.pubDate}
-                            description={entry.data.description}
+                            description={entry.data.shortDescription}
                             slug=`/blog/writeups/${entry.slug}`
                             alt=""
                         />
