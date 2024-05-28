@@ -3,21 +3,26 @@ import { getCollection } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import FullListingItem from "../../components/FullListingItem.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import PageFind from "../../components/PageFind.astro";
 
 const posts = await getCollection("writeup");
-console.log(posts);
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+
+        <!-- Pagefind -->
+        <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+        <script src="/pagefind/pagefind-ui.js" is:inline></script>
     </head>
     <body>
         <Header />
         <main class="container pt-8 md:pt-16">
+            <PageFind />
             <h1 class="w-full">
                 All blog <span class="text-lime-400">posts</span>
             </h1>

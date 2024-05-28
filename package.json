@@ -1,35 +1,35 @@
 {
-  "name": "",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.7.0",
-    "@astrojs/mdx": "^3.0.1",
-    "@astrojs/rss": "^4.0.6",
-    "@astrojs/sitemap": "^3.1.5",
-    "@astrojs/tailwind": "^5.1.0",
-    "@tailwindcss/typography": "^0.5.13",
-    "astro": "^4.9.1",
-    "astro-expressive-code": "^0.35.3",
-    "decap-cms-app": "^3.1.10",
-    "rehype-autolink-headings": "^7.1.0",
-    "rehype-slug": "^6.0.0",
-    "remark-toc": "^9.0.0",
-    "tailwindcss": "^3.4.3",
-    "typed.js": "^2.1.0",
-    "typeit": "^8.8.3"
-  },
-  "devDependencies": {
-    "pagefind": "^1.1.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0",
-    "typescript": "^5.4.5"
-  }
+    "name": "",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.7.0",
+        "@astrojs/mdx": "^3.0.1",
+        "@astrojs/rss": "^4.0.6",
+        "@astrojs/sitemap": "^3.1.5",
+        "@astrojs/tailwind": "^5.1.0",
+        "@tailwindcss/typography": "^0.5.13",
+        "astro": "^4.9.1",
+        "astro-expressive-code": "^0.35.3",
+        "decap-cms-app": "^3.1.10",
+        "rehype-autolink-headings": "^7.1.0",
+        "rehype-slug": "^6.0.0",
+        "remark-toc": "^9.0.0",
+        "tailwindcss": "^3.4.3",
+        "typed.js": "^2.1.0",
+        "typeit": "^8.8.3"
+    },
+    "devDependencies": {
+        "pagefind": "^1.1.0",
+        "prettier": "^3.2.5",
+        "prettier-plugin-astro": "^0.13.0",
+        "typescript": "^5.4.5"
+    }
 }
