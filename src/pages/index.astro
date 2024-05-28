@@ -3,10 +3,9 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import PostCard from "../components/PostCard.astro";
 
 import { getCollection } from "astro:content";
-import MiniListing from "../components/MiniListing.astro";
+import MiniListingItem from "../components/MiniListingItem.astro";
 import OffsetBtn from "../components/OffsetBtn.astro";
 import OffsetBtnAnchor from "../components/OffsetBtnAnchor.astro";
 
@@ -78,7 +77,7 @@ latestPosts = latestPosts.slice(0, 3);
                 {
                     latestPosts.length > 0 ? (
                         latestPosts.map((post: any) => (
-                            <MiniListing
+                            <MiniListingItem
                                 title={post.data.title}
                                 description={post.data.description}
                                 topics={post.data.topics}

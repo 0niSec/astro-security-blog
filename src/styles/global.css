@@ -27,6 +27,7 @@ body {
     font-family: "Fira Code", monospace;
     margin: 0;
     padding: 0;
+    line-height: inherit;
     @apply text-zinc-400 md:text-lg bg-zinc-900 text-left !important;
 }
 
@@ -68,7 +69,7 @@ pre {
 }
 
 .container {
-    @apply mx-auto items-center px-4 md:max-w-5xl;
+    @apply mx-auto items-center leading-relaxed px-4 md:max-w-5xl;
 }
 
 p > a {

@@ -4,8 +4,10 @@ import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import FullListingItem from "../../components/FullListingItem.astro";
 
 const posts = await getCollection("writeup");
+console.log(posts);
 ---
 
 <!doctype html>
@@ -16,18 +18,25 @@ const posts = await getCollection("writeup");
     <body>
         <Header />
         <main class="container pt-8 md:pt-16">
-            <h1>Writeups</h1>
-            <ul>
+            <h1 class="w-full">
+                All blog <span class="text-lime-400">posts</span>
+            </h1>
+            <p class="mt-6">Testing</p>
+
+            <section class="grid grid-cols-2 gap-4">
                 {
                     posts.map((entry) => (
-                        <li>
-                            <a href={`/blog/writeups/${entry.slug}`}>
-                                {entry.data.title}
-                            </a>
-                        </li>
+                        <FullListingItem
+                            title={entry.data.title}
+                            image={entry.data.heroImage}
+                            pubDate={entry.data.pubDate}
+                            description={entry.data.description}
+                            slug=`/blog/writeups/${entry.slug}`
+                            alt=""
+                        />
                     ))
                 }
-            </ul>
+            </section>
         </main>
         <Footer />
     </body>

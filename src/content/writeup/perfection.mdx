@@ -1,17 +1,17 @@
 ---
 title: "Perfection"
 topics:
-  [
-    "#XSS",
-    "#SSTI",
-    "#Ruby",
-    "#Burp",
-    "#RCE",
-    "#hashcat",
-    "#gobuster",
-    "#dirsearch",
-  ]
-description: "The writeup for the Hack the Box machine Perfection. This machine is an easy rated Linux box that involves exploiting a Laravel RCE vulnerability and then escalating privileges using a wildcard sudoers file."
+    [
+        "#XSS",
+        "#SSTI",
+        "#Ruby",
+        "#Burp",
+        "#RCE",
+        "#hashcat",
+        "#gobuster",
+        "#dirsearch",
+    ]
+description: "The writeup for the Hack the Box machine Perfection. This machine is an easy rated Linux box that involves exploiting a Server-Side Template Injection (SSTI) vulnerability to get a reverse shell and then cracking a hash to get root."
 pubDate: "5/24/2024"
 heroImage: "../../assets/images/Perfection.png"
 heroAlt: "The Perfection machine card on Hack the Box"
@@ -216,9 +216,9 @@ From our `linpeas` output earlier, we found we were in the `sudoers` file and al
 
 I really liked doing this machine. I think this was one of the first ones I did. Some lessons learned from this one:
 
-- Really check `sudo -l` when you first get foothold.
-  - [SUDO & SUID](https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sudo-and-suid)
-- `hashcat -a` without the `-m` attempts to guess the hash type and can be used to figure out hashes without throwing them at the wall in [CyberChef](https://gchq.github.io/CyberChef/).
-- You can pipe `linpeas` output to `tee` and an outfile with `./linpeas.sh | tee linpeas.out`
-  - Then you can read the file with `less linpeas.out`
-  - `less` retains the color and highlights and can be read one page at a time
+-   Really check `sudo -l` when you first get foothold.
+    -   [SUDO & SUID](https://book.hacktricks.xyz/linux-hardening/privilege-escalation#sudo-and-suid)
+-   `hashcat -a` without the `-m` attempts to guess the hash type and can be used to figure out hashes without throwing them at the wall in [CyberChef](https://gchq.github.io/CyberChef/).
+-   You can pipe `linpeas` output to `tee` and an outfile with `./linpeas.sh | tee linpeas.out`
+    -   Then you can read the file with `less linpeas.out`
+    -   `less` retains the color and highlights and can be read one page at a time
