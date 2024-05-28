@@ -44,7 +44,7 @@ const difficultyColors: DificultyColor = {
 
     <body>
         <Header />
-        <main data-pagefind-body>
+        <main data-pagefind-body class="container">
             <article class="prose pt-8 md:pt-16">
                 <div class="hero-image">
                     {
@@ -123,7 +123,8 @@ const difficultyColors: DificultyColor = {
                 <hr />
                 <slot />
             </article>
+
+            <Footer />
         </main>
-        <Footer />
     </body>
 </html>
