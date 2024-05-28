@@ -3,10 +3,10 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import PostCard from "../components/PostCard.astro";
 
 import { getCollection } from "astro:content";
-import type { CantRenderPage } from "astro/dist/core/errors/errors-data";
+import MiniListingItem from "../components/MiniListingItem.astro";
+import OffsetBtnAnchor from "../components/OffsetBtnAnchor.astro";
 
 // Define the latest posts array
 let latestPosts = [];
@@ -32,35 +32,54 @@ latestPosts = latestPosts.slice(0, 3);
     </head>
     <body>
         <Header />
-        <main>
+        <main class="container pt-8 md:pt-16">
             <h1><span id="header"></span></h1>
             <span class="mb-8 block text-sm md:text-base"
                 >Cyber Security | CTFs | Writeups | Code</span
             >
             <!-- Content here -->
-            <p>Welcome to 0niSec! Take a look around. You'll find writeups for machines I have completed on <a href="https://app.hackthebox.com">Hack the Box</a>, a popular CTF (Capture the Flag) platform. The writeups included on this blog are to help myself improve my skills and knowledge in cyber security. Hopefully, by sharing these here, someone may stumble across them and learn something new too.</p>
+            <p>
+                Welcome to 0niSec! Take a look around. You'll find writeups for
+                machines I have completed on <a
+                    href="https://app.hackthebox.com">Hack the Box</a
+                >, a popular CTF (Capture the Flag) platform. The writeups
+                included on this blog are to help myself improve my skills and
+                knowledge in cyber security. Hopefully, by sharing these here,
+                someone may stumble across them and learn something new too.
+            </p>
 
-            <p>You can use the site's search function to find a specific writeup or topic. Each writeup contains tags that include the main programs/binaries that were used during the process, as well as the different topics encountered (like RCE, XSS, etc.).</p>
+            <p>
+                I also plan on using this site to document any other interesting
+                findings I come across as they relate to cyber security and
+                penetration testing. See the <a href="/about">About</a> page for
+                more informatioon about me and my journey into cyber security, hacking
+                and all things red team.
+            </p>
 
-            <p>I also plan on using this site to document any other interesting findings I come across as they relate to cyber security and penetration testing. See the <a href="/about">About</a> page for more informatioon about me and my journey into cyber security, hacking and all things red team.</p>
-
-            <p>Check down below for the latest blog posts. These may just be writeups for a while, until I start getting better and more experienced 😁</p>
-            <div class="flex justify-between">
-                <h6>Latest Posts</h6>
-                <a href="/blog" class="text-sm">All Posts -></a>
+            <div class="flex justify-between items-center md:mt-32">
+                <h2>Latest Posts</h2>
+                <OffsetBtnAnchor text="All Posts" href="/blog" />
             </div>
-            <div id="latest-posts" class="md:grid md:grid-cols-4 md:gap-4 mt-4 flex flex-row">
+            <div id="latest-posts" class="mt-4 flex flex-col gap-6">
                 {
                     latestPosts.length > 0 ? (
                         latestPosts.map((post: any) => (
-                            <PostCard
+                            <MiniListingItem
                                 title={post.data.title}
                                 description={post.data.description}
                                 topics={post.data.topics}
                                 pubDate={post.data.pubDate}
-                                slug=`/blog/writeups/${post.slug}` // TODO: This needs to be changed to account for /blog/[category]/[slug]
+                                slug={`/blog/writeups/${post.slug}`}
                                 heroImage={post.data.heroImage}
                             />
+                            // <PostCard
+                            //     title={post.data.title}
+                            //     description={post.data.description}
+                            //     topics={post.data.topics}
+                            //     pubDate={post.data.pubDate}
+                            //     slug=`/blog/writeups/${post.slug}` // TODO: This needs to be changed to account for /blog/[category]/[slug]
+                            //     heroImage={post.data.heroImage}
+                            // />
                         ))
                     ) : (
                         <p class="w-full">There's nothing yet!</p>

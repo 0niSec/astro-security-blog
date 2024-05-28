@@ -1,5 +1,18 @@
 :root {
     --gray-light: 229, 233, 240;
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: #034ad8;
+    --pagefind-ui-text: #393939;
+    --pagefind-ui-background: #ffffff;
+    --pagefind-ui-border: #eeeeee;
+    --pagefind-ui-tag: #eeeeee;
+    --pagefind-ui-border-width: 2px;
+    --pagefind-ui-border-radius: 8px;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 3 / 2;
+    --pagefind-ui-font: sans-serif;
+    --tw-lime-400: rgb(163 230 53);
+    --tw-lime-500: rgb(132 204 22);
 }
 
 @font-face {
@@ -14,7 +27,8 @@ body {
     font-family: "Fira Code", monospace;
     margin: 0;
     padding: 0;
-    @apply text-neutral-200 bg-zinc-900 text-lg text-left leading-[1.7rem] !important;
+    line-height: inherit;
+    @apply text-zinc-400 md:text-lg bg-zinc-900 text-left !important;
 }
 
 img {
@@ -22,19 +36,19 @@ img {
 }
 
 h1 {
-    @apply text-5xl font-bold;
+    @apply text-3xl md:text-5xl font-bold text-neutral-200;
 }
 
 h2 {
-    @apply text-4xl font-bold;
+    @apply text-2xl md:text-4xl font-bold text-neutral-200;
 }
 
 h3 {
-    @apply text-3xl font-bold;
+    @apply text-xl md:text-3xl font-bold text-neutral-200;
 }
 
 h4 {
-    @apply text-2xl font-bold;
+    @apply text-lg md:text-2xl font-bold text-neutral-200;
 }
 
 h5 {
@@ -54,24 +68,62 @@ pre {
     border-radius: 8px;
 }
 
-main {
-    @apply container mx-auto p-8 md:p-16;
+.container {
+    @apply mx-auto items-center leading-relaxed px-4 md:max-w-5xl;
 }
 
-a:not(#post-card) {
+p > a {
     @apply text-lime-400 hover:text-lime-500;
 }
 
+.social-links a {
+    @apply hover:text-lime-400;
+}
+
+/* We can use the `a` selector to style the links */
+a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
+        p > a
+    ) {
+    position: relative;
+    text-decoration: none;
+}
+
+a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
+        p > a
+    )::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 2px;
+    left: 0;
+    background-color: var(--tw-lime-400);
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
+        p > a
+    ):hover::before {
+    width: 100%;
+}
+
+a.active {
+    @apply decoration-lime-400 underline-offset-[4px] !important;
+}
+
+.offset-btn::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    @apply bg-lime-400 absolute translate-x-1 translate-y-1 transform -z-50 inset-0;
+}
+
 .prose {
-    @apply text-neutral-200 text-lg mx-auto max-w-3xl;
+    @apply text-neutral-200/75 text-lg mx-auto max-w-3xl;
 }
 
 .icon-link {
     @apply ml-2 no-underline;
-}
-
-.anchor {
-    @apply no-underline opacity-10 hover:opacity-100;
 }
 
 .expressive-code + .expressive-code {
@@ -88,11 +140,15 @@ a:not(#post-card) {
 }
 
 .prose a {
-    @apply text-lime-400 hover:text-lime-500;
+    @apply text-lime-400 hover:text-lime-500 no-underline;
 }
 
 p {
     @apply mb-4;
+}
+
+p:last-of-type {
+    @apply mb-10;
 }
 
 .date {
@@ -103,8 +159,12 @@ nav h2 {
     @apply text-2xl;
 }
 
-nav * {
-    @apply text-lime-400 hover:text-lime-500;
+nav .social-links a {
+    @apply text-neutral-200 hover:text-lime-400;
+}
+
+#menu a {
+    @apply text-neutral-200;
 }
 
 div.prose ul li {
@@ -121,4 +181,8 @@ mark {
 
 kbd {
     @apply bg-slate-400 px-1 rounded-sm;
+}
+
+footer {
+    @apply text-neutral-200;
 }

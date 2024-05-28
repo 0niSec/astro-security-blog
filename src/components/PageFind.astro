@@ -1,0 +1,16 @@
+<div id="search" class="mb-8"></div>
+
+<script is:inline>
+    window.addEventListener("DOMContentLoaded", (event) => {
+        new PagefindUI({ element: "#search", resetStyles: false });
+    });
+</script>
+
+<style is:global>
+    :root {
+        --pagefind-ui-primary: rgb(39 39 42);
+        --pagefind-ui-text: rgb(161 161 170);
+        --pagefind-ui-background: rgb(39 39 42);
+        --pagefind-ui-border: rgb(63 63 70);
+    }
+</style>

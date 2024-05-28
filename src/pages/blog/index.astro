@@ -3,7 +3,9 @@ import { getCollection } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
+import FullListingItem from "../../components/FullListingItem.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import PageFind from "../../components/PageFind.astro";
 
 const posts = await getCollection("writeup");
 ---
@@ -12,22 +14,33 @@ const posts = await getCollection("writeup");
 <html lang="en">
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+
+        <!-- Pagefind -->
+        <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+        <script src="/pagefind/pagefind-ui.js" is:inline></script>
     </head>
     <body>
         <Header />
-        <main>
-            <h1>Writeups</h1>
-            <ul>
+        <main class="container pt-8 md:pt-16">
+            <PageFind />
+            <h1 class="w-full">
+                All blog <span class="text-lime-400">posts</span>
+            </h1>
+
+            <section class="md:grid md:grid-cols-2 flex flex-row gap-4 mt-8">
                 {
                     posts.map((entry) => (
-                        <li>
-                            <a href={`/blog/writeups/${entry.slug}`}>
-                                {entry.data.title}
-                            </a>
-                        </li>
+                        <FullListingItem
+                            title={entry.data.title}
+                            image={entry.data.heroImage}
+                            pubDate={entry.data.pubDate}
+                            description={entry.data.shortDescription}
+                            slug=`/blog/writeups/${entry.slug}`
+                            alt=""
+                        />
                     ))
                 }
-            </ul>
+            </section>
         </main>
         <Footer />
     </body>

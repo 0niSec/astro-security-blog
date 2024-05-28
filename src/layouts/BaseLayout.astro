@@ -13,13 +13,14 @@ const { frontmatter } = Astro.props;
         <BaseHead
             title={frontmatter.title}
             description={frontmatter.description}
+            image={frontmatter.heroImage}
         />
     </head>
 
     <body>
         <Header />
         <main>
-            <article class="prose">
+            <article class="prose pt-8 md:pt-16">
                 <div class="hero-image">
                     {
                         frontmatter.heroImage && (

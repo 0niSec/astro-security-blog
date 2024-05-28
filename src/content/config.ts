@@ -10,6 +10,7 @@ export const collections = {
             z.object({
                 title: z.string(),
                 topics: z.array(z.string()), // A tag listing of the types of topics
+                shortDescription: z.string(), // Used on the /blog listing of articles to prevent bloat
                 description: z.string(),
                 pubDate: z.coerce.date(),
                 updatedDate: z.coerce.date().optional(),

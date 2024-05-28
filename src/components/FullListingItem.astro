@@ -1,0 +1,19 @@
+---
+import { Image } from "astro:assets";
+import FormattedDate from "./FormattedDate.astro";
+
+const { title, description, image, imageAlt, pubDate, slug } = Astro.props;
+---
+
+<div class="post-listing">
+    <a href={slug} class="no-animation">
+        <Image src={image} alt="" loading="eager" />
+    </a>
+    <div class="flex justify-end">
+        <FormattedDate date={pubDate} />
+    </div>
+    <a href={slug} class="text-neutral-200 font-semibold cursor-pointer"
+        >{title}</a
+    >
+    <p class="mt-1 leading-6">{description}</p>
+</div>
