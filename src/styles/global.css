@@ -1,136 +1,136 @@
 :root {
-  --gray-light: 229, 233, 240;
-  --pagefind-ui-scale: 1;
-  --pagefind-ui-primary: #034ad8;
-  --pagefind-ui-text: #393939;
-  --pagefind-ui-background: #ffffff;
-  --pagefind-ui-border: #eeeeee;
-  --pagefind-ui-tag: #eeeeee;
-  --pagefind-ui-border-width: 2px;
-  --pagefind-ui-border-radius: 8px;
-  --pagefind-ui-image-border-radius: 8px;
-  --pagefind-ui-image-box-ratio: 3 / 2;
-  --pagefind-ui-font: sans-serif;
-  --tw-lime-400: rgb(163 230 53);
-  --tw-lime-500: rgb(132 204 22);
+    --gray-light: 229, 233, 240;
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: #034ad8;
+    --pagefind-ui-text: #393939;
+    --pagefind-ui-background: #ffffff;
+    --pagefind-ui-border: #eeeeee;
+    --pagefind-ui-tag: #eeeeee;
+    --pagefind-ui-border-width: 2px;
+    --pagefind-ui-border-radius: 8px;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 3 / 2;
+    --pagefind-ui-font: sans-serif;
+    --tw-lime-400: rgb(163 230 53);
+    --tw-lime-500: rgb(132 204 22);
 }
 
 @font-face {
-  font-family: "Fira Code";
-  src: url("/fonts/firacode-regular.ttf") format("ttf");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+    font-family: "Fira Code";
+    src: url("/fonts/firacode-regular.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 body {
-  font-family: "Fira Code", monospace;
-  margin: 0;
-  padding: 0;
-  @apply text-zinc-400 bg-zinc-900 text-left !important;
+    font-family: "Fira Code", monospace;
+    margin: 0;
+    padding: 0;
+    @apply text-zinc-400 bg-zinc-900 text-left !important;
 }
 
 html {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 img {
-  @apply w-full;
+    @apply w-full;
 }
 
 h1 {
-  @apply text-3xl md:text-5xl font-bold text-neutral-200;
+    @apply text-3xl md:text-5xl font-bold text-neutral-200;
 }
 
 h2 {
-  @apply text-2xl md:text-4xl font-bold text-neutral-200;
+    @apply text-2xl md:text-4xl font-bold text-neutral-200;
 }
 
 h3 {
-  @apply text-xl md:text-3xl font-bold text-neutral-200;
+    @apply text-xl md:text-3xl font-bold text-neutral-200;
 }
 
 h4 {
-  @apply text-lg md:text-2xl font-bold text-neutral-200;
+    @apply text-lg md:text-2xl font-bold text-neutral-200;
 }
 
 h5 {
-  @apply text-xl font-bold;
+    @apply text-xl font-bold;
 }
 
 h6 {
-  @apply text-lg font-bold;
+    @apply text-lg font-bold;
 }
 
 code {
-  @apply py-[2px] px-[4px] rounded-sm bg-slate-400;
+    @apply py-[2px] px-[4px] rounded-sm bg-slate-400;
 }
 
 pre {
-  padding: 1.5em;
-  border-radius: 8px;
+    padding: 1.5em;
+    border-radius: 8px;
 }
 
 .container {
-  @apply mx-auto items-center px-4 md:max-w-5xl;
+    @apply mx-auto items-center px-4 md:max-w-5xl;
 }
 
 p > a {
-  @apply text-lime-400 hover:text-lime-500;
+    @apply text-lime-400 hover:text-lime-500;
 }
 
 .social-links a {
-  @apply hover:text-lime-400;
+    @apply hover:text-lime-400;
 }
 
 /* We can use the `a` selector to style the links */
 a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
-    p > a
-  ) {
-  position: relative;
-  text-decoration: none;
+        p > a
+    ) {
+    position: relative;
+    text-decoration: none;
 }
 
 a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
-    p > a
-  )::before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 2px;
-  left: 0;
-  background-color: var(--tw-lime-400);
-  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        p > a
+    )::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 2px;
+    left: 0;
+    background-color: var(--tw-lime-400);
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 a:not(.social-links a):not(.active):not(.prose a):not(.no-animation):not(
-    p > a
-  ):hover::before {
-  width: 100%;
+        p > a
+    ):hover::before {
+    width: 100%;
 }
 
 a.active {
-  @apply decoration-lime-400 underline-offset-[4px] !important;
+    @apply decoration-lime-400 underline-offset-[4px] !important;
 }
 
 .offset-btn::after {
-  content: "";
-  height: 100%;
-  width: 100%;
-  @apply bg-lime-400 absolute translate-x-1 translate-y-1 transform -z-50 inset-0;
+    content: "";
+    height: 100%;
+    width: 100%;
+    @apply bg-lime-400 absolute translate-x-1 translate-y-1 transform -z-50 inset-0;
 }
 
 .prose {
-  @apply text-neutral-200/75 text-lg mx-auto max-w-3xl;
+    @apply text-neutral-200/75 text-lg mx-auto max-w-3xl;
 }
 
 .icon-link {
-  @apply ml-2 no-underline;
+    @apply ml-2 no-underline;
 }
 
 .expressive-code + .expressive-code {
-  @apply mt-8;
+    @apply mt-8;
 }
 
 .prose h1,
@@ -139,45 +139,45 @@ a.active {
 .prose h4,
 .prose h5,
 .prose h6 {
-  @apply text-neutral-200;
+    @apply text-neutral-200;
 }
 
 .prose a {
-  @apply text-lime-400 hover:text-lime-500 no-underline;
+    @apply text-lime-400 hover:text-lime-500 no-underline;
 }
 
 p:not(.description) {
-  @apply mb-4;
+    @apply mb-4;
 }
 
 .date {
-  @apply mt-4;
+    @apply mt-4;
 }
 
 nav h2 {
-  @apply text-2xl;
+    @apply text-2xl;
 }
 
 nav .social-links a {
-  @apply text-neutral-200 hover:text-lime-400;
+    @apply text-neutral-200 hover:text-lime-400;
 }
 
 #menu a {
-  @apply text-neutral-200;
+    @apply text-neutral-200;
 }
 
 div.prose ul li {
-  @apply mb-1;
+    @apply mb-1;
 }
 
 pre > code {
-  all: unset;
+    all: unset;
 }
 
 mark {
-  @apply bg-lime-400 px-1 rounded-sm;
+    @apply bg-lime-400 px-1 rounded-sm;
 }
 
 kbd {
-  @apply bg-slate-400 px-1 rounded-sm;
+    @apply bg-slate-400 px-1 rounded-sm;
 }

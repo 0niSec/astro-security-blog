@@ -65,7 +65,15 @@ const { title, description, image } = Astro.props;
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+{
+    // Conditionally render the og:type, depending on the page we're on
+    // Assuming /blog/ means we're on a blog post page
+    !Astro.url.pathname.startsWith("/blog/") ? (
+        <meta property="og:type" content="website" />
+    ) : (
+        <meta property="og:type" content="article" />
+    )
+}
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
