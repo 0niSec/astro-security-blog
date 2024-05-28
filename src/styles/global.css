@@ -27,11 +27,7 @@ body {
     font-family: "Fira Code", monospace;
     margin: 0;
     padding: 0;
-    @apply text-zinc-400 bg-zinc-900 text-left !important;
-}
-
-html {
-    font-size: 18px;
+    @apply text-zinc-400 md:text-lg bg-zinc-900 text-left !important;
 }
 
 img {
@@ -146,8 +142,12 @@ a.active {
     @apply text-lime-400 hover:text-lime-500 no-underline;
 }
 
-p:not(.description) {
+p {
     @apply mb-4;
+}
+
+p:last-of-type {
+    @apply mb-10;
 }
 
 .date {
@@ -180,4 +180,8 @@ mark {
 
 kbd {
     @apply bg-slate-400 px-1 rounded-sm;
+}
+
+footer {
+    @apply text-neutral-200;
 }
