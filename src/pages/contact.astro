@@ -1,13 +1,53 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import { Resend } from "resend";
 
-interface Props {
-    title: string;
-    description: string;
-    image?: string;
+// Variables
+let loading = false;
+let responseMessage: string;
+
+async function submit(e: SubmitEvent) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        body: formData,
+    });
+
+    const data = await response.json();
+    responseMessage = data.message;
 }
 
-let loading = false;
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData();
+        const name = data.get("name");
+        const email = data.get("email");
+        const subject = data.get("subject");
+        const message = data.get("message");
+        const res = await fetch("/api/sendEmail.json", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                from: name,
+                to: email,
+                subject: subject,
+                html: message,
+            }),
+        });
+
+        const resData = await res.json();
+        if (resData) {
+            console.log(resData);
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            console.error(error.message); // Just testing this
+        }
+    }
+}
 ---
 
 <PageLayout title="Contact Me" description="Send me an email!">
@@ -25,6 +65,7 @@ let loading = false;
                 method="POST"
                 enctype="multipart/form-data"
                 class="p-8 space-y-4"
+                onsubmit="submit()"
             >
                 <h1>Contact Me</h1>
                 <p class="pb-4">Got something to say? Send an email!</p>
