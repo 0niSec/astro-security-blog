@@ -1,0 +1,143 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import { Resend } from "resend";
+
+export const prerender = false;
+
+// Variables
+let loading = false;
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
+const ADMIN_EMAIL = import.meta.env.ADMIN_EMAIL;
+const DESTINATION_EMAIL = import.meta.env.DESTINATION_EMAIL;
+
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData();
+        const name = data.get("name");
+        const email = data.get("email");
+        const subject = data.get("subject");
+        const message = data.get("message");
+
+        if (!name || !email || !subject || !message) {
+            return new Response(null, {
+                status: 404,
+                statusText:
+                    "Please check all items and make sure all are filled out prior to sending.",
+            });
+        }
+
+        const send = await resend.emails.send({
+            from: ADMIN_EMAIL,
+            to: DESTINATION_EMAIL,
+            subject: `Contact Form: ${subject}`,
+            html: `
+            <strong>Name:</strong> ${name}<br />
+			<strong>Email:</strong> ${email}<br /><br />
+			${message}<br />
+			<hr />
+			<p style="margin:0;padding:0;line-height:0">This message was sent from the contact form on <a href="https://0nisec.blog/contact">0nisec.blog</a></p>
+			<p style="margin:0;padding:0;line-height:0">This email was sent by <a href="https://resend.com">resend.com</a></p>
+			`,
+        });
+
+        if (send.data) {
+            return new Response.redirect("/contact", 302);
+        } else {
+            return new Response({
+                status: 500,
+                statusText: "Internal Server Error",
+            });
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+---
+
+<PageLayout title="Contact Me" description="Send me an email!">
+    <div class="grid place-items-center mx-auto">
+        <div class="bg-zinc-800 shadow-inner ring-0 rounded-md">
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+                class="p-8 space-y-4"
+            >
+                <h1>Contact Me</h1>
+                <p class="pb-4">Got something to say? Send an email!</p>
+                <div class="form-control w-full">
+                    <label class="label" for="name">
+                        <span class="font-bold">Name</span>
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Name"
+                            required
+                            aria-required="true"
+                        />
+                    </label>
+                </div>
+                <div class="form-control">
+                    <label class="label" for="email">
+                        <span class="font-bold">Email</span>
+                    </label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Email"
+                        required
+                        aria-required="true"
+                    />
+                </div>
+                <div class="form-control">
+                    <label class="label" for="subject">
+                        <span class="font-bold">Subject</span>
+                        <select
+                            id="subject"
+                            name="subject"
+                            required
+                            aria-required="true"
+                        >
+                            <option disabled selected>Choose a subject</option>
+                            <option>Suggestion</option>
+                            <option>Feedback</option>
+                            <option>Issue/Bug</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="form-control">
+                    <label class="label" for="message">
+                        <span class="label-text font-bold">Message</span>
+                        <textarea
+                            placeholder="Message"
+                            name="message"
+                            id="message"
+                            required
+                            aria-required="true"></textarea>
+                    </label>
+                </div>
+                <div class="form-control pt-6">
+                    <button type="submit" name="submit">
+                        {!loading && <span>Send</span>}
+                        <span
+                            class="loading loading-spinner"
+                            style="font-size: inherit;"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</PageLayout>
+
+<style>
+    input,
+    select,
+    textarea {
+        @apply bg-zinc-900 p-2 focus:ring-1 focus:outline-none focus:ring-lime-400 focus-visible:ring-lime-400 ring-1 ring-zinc-700  rounded-sm w-full;
+    }
+
+    button {
+        @apply p-2 rounded-sm text-neutral-200 bg-transparent border border-lime-400 hover:bg-lime-400 hover:text-zinc-900 hover:transition-all hover:duration-300 hover:ease-in-out w-full;
+    }
+</style>
