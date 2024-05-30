@@ -35,29 +35,34 @@ img {
     @apply w-full;
 }
 
-h1 {
+h1,
+.prose h1 {
     @apply text-3xl md:text-5xl font-bold text-neutral-200;
 }
 
-h2 {
+h2,
+.prose h2 {
     @apply text-2xl md:text-4xl font-bold text-neutral-200;
 }
 
-h3 {
+h3,
+.prose h3 {
     @apply text-xl md:text-3xl font-bold text-neutral-200;
 }
 
-h4 {
+h4,
+.prose h4 {
     @apply text-lg md:text-2xl font-bold text-neutral-200;
 }
 
-h5 {
+/* h5,
+.prose h5 {
     @apply text-xl font-bold;
 }
 
 h6 {
     @apply text-lg font-bold;
-}
+} */
 
 code {
     @apply py-[2px] px-[4px] rounded-sm bg-slate-400;
@@ -74,6 +79,10 @@ pre {
 
 p > a {
     @apply text-lime-400 hover:text-lime-500;
+}
+
+.prose strong {
+    @apply text-neutral-200;
 }
 
 .social-links a {
