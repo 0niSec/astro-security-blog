@@ -2,21 +2,13 @@
 import PageLayout from "../layouts/PageLayout.astro";
 import { Resend } from "resend";
 
+export const prerender = false;
+
 // Variables
 let loading = false;
-let responseMessage: string;
-
-async function submit(e: SubmitEvent) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget as HTMLFormElement);
-    const response = await fetch("/api/sendEmail", {
-        method: "POST",
-        body: formData,
-    });
-
-    const data = await response.json();
-    responseMessage = data.message;
-}
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
+const ADMIN_EMAIL = import.meta.env.ADMIN_EMAIL;
+const DESTINATION_EMAIL = import.meta.env.DESTINATION_EMAIL;
 
 if (Astro.request.method === "POST") {
     try {
@@ -25,47 +17,50 @@ if (Astro.request.method === "POST") {
         const email = data.get("email");
         const subject = data.get("subject");
         const message = data.get("message");
-        const res = await fetch("/api/sendEmail.json", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                from: name,
-                to: email,
-                subject: subject,
-                html: message,
-            }),
+
+        if (!name || !email || !subject || !message) {
+            return new Response(null, {
+                status: 404,
+                statusText:
+                    "Please check all items and make sure all are filled out prior to sending.",
+            });
+        }
+
+        const send = await resend.emails.send({
+            from: ADMIN_EMAIL,
+            to: DESTINATION_EMAIL,
+            subject: `Contact Form: ${subject}`,
+            html: `
+            <strong>Name:</strong> ${name}<br />
+			<strong>Email:</strong> ${email}<br /><br />
+			${message}<br />
+			<hr />
+			<p style="margin:0;padding:0;line-height:0">This message was sent from the contact form on <a href="https://0nisec.blog/contact">0nisec.blog</a></p>
+			<p style="margin:0;padding:0;line-height:0">This email was sent by <a href="https://resend.com">resend.com</a></p>
+			`,
         });
 
-        const resData = await res.json();
-        if (resData) {
-            console.log(resData);
+        if (send.data) {
+            return new Response.redirect("/contact", 302);
+        } else {
+            return new Response({
+                status: 500,
+                statusText: "Internal Server Error",
+            });
         }
     } catch (error) {
-        if (error instanceof Error) {
-            console.error(error.message); // Just testing this
-        }
+        console.error(error);
     }
 }
 ---
 
 <PageLayout title="Contact Me" description="Send me an email!">
     <div class="grid place-items-center mx-auto">
-        <!-- <div class="mb-4 w-full">
-            {#if showAlert && form?.success}
-                <DismissableAlert type="success" on:dismiss={handleDismiss} message="Message sent successfully! Thank you!" />
-            {:else if showAlert && form?.message}
-                <DismissableAlert type="error" on:dismiss={handleDismiss} message={form.message} />
-            {/if}
-        </div> -->
-
         <div class="bg-zinc-800 shadow-inner ring-0 rounded-md">
             <form
                 method="POST"
                 enctype="multipart/form-data"
                 class="p-8 space-y-4"
-                onsubmit="submit()"
             >
                 <h1>Contact Me</h1>
                 <p class="pb-4">Got something to say? Send an email!</p>
