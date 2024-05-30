@@ -5,58 +5,42 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
 import tailwind from "@astrojs/tailwind";
-
 import expressiveCode from "astro-expressive-code";
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://0nisec.blog",
   prefetch: {
-    defaultStrategy: "hover",
+    defaultStrategy: "hover"
   },
   trailingSlash: "ignore",
-  integrations: [
-    expressiveCode({
-      themes: ["min-dark"],
-    }),
-    mdx(),
-    sitemap(),
-    tailwind(),
-  ],
+  integrations: [expressiveCode({
+    themes: ["min-dark"]
+  }), mdx(), sitemap(), tailwind()],
   markdown: {
-    remarkPlugins: [
-      [
-        remarkToc,
-        {
-          heading: "table of contents",
+    remarkPlugins: [[remarkToc, {
+      heading: "table of contents"
+    }]],
+    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {
+      behavior: "append",
+      properties: {
+        className: "anchor"
+      },
+      content: {
+        type: "element",
+        tagName: "span",
+        properties: {
+          className: "icon icon-link"
         },
-      ],
-    ],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "append",
-          properties: {
-            className: "anchor",
-          },
-          content: {
-            type: "element",
-            tagName: "span",
-            properties: {
-              className: "icon icon-link",
-            },
-            children: [
-              {
-                type: "text",
-                value: "#",
-              },
-            ],
-          },
-        },
-      ],
-    ],
+        children: [{
+          type: "text",
+          value: "#"
+        }]
+      }
+    }]]
   },
-  output: "static",
+  output: "hybrid",
+  adapter: netlify()
 });
