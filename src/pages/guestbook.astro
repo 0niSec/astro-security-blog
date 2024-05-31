@@ -1,11 +1,41 @@
 ---
+export const prerender = false;
+import { db, Comment } from "astro:db";
 import PageLayout from "../layouts/PageLayout.astro";
+
+const comments = await db.select().from(Comment);
+
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData();
+
+        const response = await fetch(`${Astro.url.origin}/api/addComment`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                comment: data.get("comment"),
+            }),
+        });
+
+        if (response.status === 200) {
+            return Astro.redirect("/guestbook");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
 ---
 
 <PageLayout title="0nisec | Guestbook" description="0nisec Guestbook">
     <h3>Sign my Guestbook</h3>
-    <form action="POST" class="mt-8 relative max-w-[500px] gap-2">
-        <span class="sr-only">Comment</span>
+    <form
+        method="POST"
+        class="mt-8 relative max-w-[500px] gap-2"
+        enctype="multipart/form-data"
+    >
+        <span class="sr-only"> Comment </span>
 
         <input
             type="text"
@@ -13,6 +43,8 @@ import PageLayout from "../layouts/PageLayout.astro";
             placeholder="Say something!"
             aria-label="your comment"
             id="comment"
+            required
+            aria-required="true"
             class="bg-zinc-800 p-2 focus:ring-1 focus:outline-none focus:ring-lime-400 focus-visible:ring-lime-400 ring-1 ring-zinc-700 rounded-sm w-full"
         />
         <button
@@ -21,4 +53,22 @@ import PageLayout from "../layouts/PageLayout.astro";
             >Send</button
         >
     </form>
+    <section id="comments" class="mt-10 text-base">
+        {
+            comments.map(({ comment }) => (
+                <div class="comment flex space-x-2 mt-4">
+                    <span class="authorId font-bold text-lime-400">
+                        Testing:
+                    </span>
+                    <p class=""> {comment}</p>
+                </div>
+            ))
+        }
+    </section>
 </PageLayout>
+
+<style>
+    section:has(.comment) p {
+        @apply mb-0;
+    }
+</style>
