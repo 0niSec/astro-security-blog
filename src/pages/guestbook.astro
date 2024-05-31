@@ -1,0 +1,24 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+---
+
+<PageLayout title="0nisec | Guestbook" description="0nisec Guestbook">
+    <h3>Sign my Guestbook</h3>
+    <form action="POST" class="mt-8 relative max-w-[500px] gap-2">
+        <span class="sr-only">Comment</span>
+
+        <input
+            type="text"
+            name="comment"
+            placeholder="Say something!"
+            aria-label="your comment"
+            id="comment"
+            class="bg-zinc-800 p-2 focus:ring-1 focus:outline-none focus:ring-lime-400 focus-visible:ring-lime-400 ring-1 ring-zinc-700 rounded-sm w-full"
+        />
+        <button
+            type="submit"
+            class="absolute flex items-center justify-center right-1 bottom-2 top-2 bg-zinc-700 rounded-sm px-2"
+            >Send</button
+        >
+    </form>
+</PageLayout>

@@ -6,8 +6,9 @@ import rehypeSlug from "rehype-slug";
 import remarkToc from "remark-toc";
 import tailwind from "@astrojs/tailwind";
 import expressiveCode from "astro-expressive-code";
-
 import netlify from "@astrojs/netlify";
+
+import db from "@astrojs/db";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,7 +19,7 @@ export default defineConfig({
   trailingSlash: "ignore",
   integrations: [expressiveCode({
     themes: ["min-dark"]
-  }), mdx(), sitemap(), tailwind()],
+  }), mdx(), sitemap(), tailwind(), db()],
   markdown: {
     remarkPlugins: [[remarkToc, {
       heading: "table of contents"
