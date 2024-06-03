@@ -1,0 +1,120 @@
+---
+export const prerender = false;
+import { db, Comment } from "astro:db";
+import PageLayout from "../layouts/PageLayout.astro";
+import GithubButton from "../components/GithubButton.astro";
+
+// On page reload, refresh the comments
+const comments = await db.select().from(Comment);
+
+// Set the access_token value from the AstroCookie
+const githubAccessToken = Astro.cookies.get("access_token")?.value;
+
+// Set a basic logged in flag
+let isLoggedIn = false;
+
+if (Astro.request.method === "GET" && githubAccessToken) {
+    isLoggedIn = true;
+}
+
+if (Astro.request.method === "POST") {
+    try {
+        // Use the access_token to get the user "login"
+        // https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28
+        const userRes = await fetch(`https://api.github.com/user`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${githubAccessToken}`,
+            },
+        });
+
+        // Get the response
+        const userData = await userRes.json();
+
+        // Set the user to the `login` property of the JSON
+        const user = userData.login;
+
+        // Get the formData
+        const data = await Astro.request.formData();
+
+        // Make a fetch to the addComment endpoint and get the response
+        const response = await fetch(`${Astro.url.origin}/api/addComment`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user: user,
+                comment: data.get("comment"),
+                date: Date.now(),
+            }),
+        });
+
+        // If the response was 200 then we have a successful post
+        // Then redirect back to the guestbook
+        if (response.status === 200) {
+            return Astro.redirect("/guestbook");
+        }
+    } catch (error) {
+        return new Response(null, {
+            status: 500,
+            statusText: "Internal Server Error",
+        });
+    }
+}
+---
+
+<PageLayout title="0nisec | Guestbook" description="0nisec Guestbook">
+    <h3>Sign my Guestbook</h3>
+
+    {
+        isLoggedIn ? (
+            <form
+                method="POST"
+                class="mt-8 relative max-w-[500px] gap-2"
+                enctype="multipart/form-data"
+            >
+                <span class="sr-only"> Comment </span>
+
+                <input
+                    type="text"
+                    name="comment"
+                    placeholder="Say something!"
+                    aria-label="your comment"
+                    id="comment"
+                    required
+                    aria-required="true"
+                    class="bg-zinc-800 p-2 focus:ring-1 focus:outline-none focus:ring-lime-400 focus-visible:ring-lime-400 ring-1 ring-zinc-700 rounded-sm w-full"
+                />
+                <button
+                    type="submit"
+                    class="absolute flex items-center justify-center right-1 bottom-2 top-2 bg-zinc-700 rounded-md px-2"
+                    tabindex="0"
+                >
+                    Send
+                </button>
+            </form>
+        ) : (
+            <GithubButton />
+        )
+    }
+    <section id="comments" class="mt-10 text-base">
+        {
+            comments.map(({ user, comment }) => (
+                <div class="comment flex space-x-2 mt-4">
+                    <span class="authorId font-bold text-lime-400">
+                        {user ?? "Unknown"}
+                    </span>
+                    <p class=""> {comment}</p>
+                </div>
+            ))
+        }
+    </section>
+</PageLayout>
+
+<style>
+    section:has(.comment) p {
+        @apply mb-0;
+    }
+</style>
