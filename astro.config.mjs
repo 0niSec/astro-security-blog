@@ -9,62 +9,60 @@ import expressiveCode from "astro-expressive-code";
 import netlify from "@astrojs/netlify";
 import db from "@astrojs/db";
 
-import auth from "auth-astro";
-
 // https://astro.build/config
 export default defineConfig({
-  site: "https://0nisec.blog",
-  prefetch: {
-    defaultStrategy: "hover",
-  },
-  trailingSlash: "ignore",
-  integrations: [
-    expressiveCode({
-      themes: ["min-dark"],
-    }),
-    mdx(),
-    sitemap(),
-    tailwind(),
-    db(),
-  ],
-  markdown: {
-    remarkPlugins: [
-      [
-        remarkToc,
-        {
-          heading: "table of contents",
-        },
-      ],
+    site: "https://0nisec.blog",
+    prefetch: {
+        defaultStrategy: "hover",
+    },
+    trailingSlash: "ignore",
+    integrations: [
+        expressiveCode({
+            themes: ["min-dark"],
+        }),
+        mdx(),
+        sitemap(),
+        tailwind(),
+        db(),
     ],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "append",
-          properties: {
-            className: "anchor",
-          },
-          content: {
-            type: "element",
-            tagName: "span",
-            properties: {
-              className: "icon icon-link",
-            },
-            children: [
-              {
-                type: "text",
-                value: "#",
-              },
+    markdown: {
+        remarkPlugins: [
+            [
+                remarkToc,
+                {
+                    heading: "table of contents",
+                },
             ],
-          },
-        },
-      ],
-    ],
-  },
-  output: "hybrid",
-  security: {
-    checkOrigin: true,
-  },
-  adapter: netlify(),
+        ],
+        rehypePlugins: [
+            rehypeSlug,
+            [
+                rehypeAutolinkHeadings,
+                {
+                    behavior: "append",
+                    properties: {
+                        className: "anchor",
+                    },
+                    content: {
+                        type: "element",
+                        tagName: "span",
+                        properties: {
+                            className: "icon icon-link",
+                        },
+                        children: [
+                            {
+                                type: "text",
+                                value: "#",
+                            },
+                        ],
+                    },
+                },
+            ],
+        ],
+    },
+    output: "hybrid",
+    security: {
+        checkOrigin: true,
+    },
+    adapter: netlify(),
 });

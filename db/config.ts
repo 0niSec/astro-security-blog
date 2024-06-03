@@ -1,21 +1,21 @@
 import { column, defineTable, isNotNull } from "astro:db";
 import { defineDb } from "astro:db";
 
-// const Author = defineTable({
-//     columns: {
-//         id: column.number({ primaryKey: true }),
-//         name: column.text(),
-//     },
-// });
+const User = defineTable({
+    columns: {
+        name: column.text(),
+    },
+});
 
 const Comment = defineTable({
     columns: {
-        // authorId: column.number({ references: () => Author.columns.id }),
+        user: column.text(),
         comment: column.text(),
+        date: column.date(),
     },
 });
 
 // https://astro.build/db/config
 export default defineDb({
-    tables: { Comment },
+    tables: { User, Comment },
 });
