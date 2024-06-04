@@ -25,7 +25,18 @@ latestPosts.sort((a, b) => {
 latestPosts = latestPosts.slice(0, 3);
 ---
 
-<!doctype html>
+<!-- TypeIt JS -->
+<script>
+    import TypeIt from "typeit";
+
+    new TypeIt("#header", {
+        strings: "鬼 0niSec",
+        loop: true,
+    })
+        .go()
+        .pause(1500);
+</script>
+
 <html lang="en">
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />

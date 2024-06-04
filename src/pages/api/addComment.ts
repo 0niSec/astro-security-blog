@@ -4,9 +4,7 @@ export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.json();
-  const { user, comment, date } = data;
-
-  console.log("Date", date);
+  const { user, comment } = data;
 
   // If the user isn't passed in the form POST then return a 403
   if (!user) {
