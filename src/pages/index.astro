@@ -30,9 +30,34 @@ latestPosts = latestPosts.slice(0, 3);
     import TypeIt from "typeit";
 
     new TypeIt("#header", {
-        strings: "鬼 0niSec",
-        loop: true,
+        //strings: "鬼 0niSec",
+        // loop: true,
+        startDelay: 500,
+        waitUntilVisible: true,
     })
+        .type("こんにちは！", { delay: 350 })
+        .pause(400)
+        .delete()
+        .pause(150)
+        .type("Hello!", { delay: 350 })
+        .pause(150)
+        .delete()
+        .pause(200)
+        .type("ようこそ！", { delay: 350 })
+        .pause(300)
+        .delete()
+        .pause(250)
+        .type("Welcome!", { delay: 250 })
+        .pause(150)
+        .delete()
+        .type("おに", { delay: 500 })
+        .pause(250)
+        .delete(2)
+        .type("鬼")
+        .type(" 0nis")
+        .pause(250)
+        .delete(1)
+        .type("Sec", { delay: 300 })
         .go()
         .pause(1500);
 </script>
