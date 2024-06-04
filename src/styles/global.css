@@ -28,7 +28,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: inherit;
-    @apply text-zinc-400 md:text-lg bg-zinc-900 text-left !important;
+    @apply text-zinc-400 md:text-lg bg-zinc-900 text-left antialiased !important;
 }
 
 img {
