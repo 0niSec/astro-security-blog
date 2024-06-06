@@ -1,6 +1,6 @@
-export const prerender = false;
 import type { APIRoute } from "astro";
 import { db, Comment } from "astro:db";
+export const prerender = false;
 
 export const GET: APIRoute = async () => {
   const comments = await db.select().from(Comment);

@@ -1,8 +1,9 @@
 ---
-export const prerender = false;
 import { db, Comment, desc } from "astro:db";
 import PageLayout from "../layouts/PageLayout.astro";
 import GithubButton from "../components/GithubButton.astro";
+
+export const prerender = false;
 
 // On page reload, refresh the comments
 const comments = await db
